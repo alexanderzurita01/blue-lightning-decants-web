@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { currency, families, products, sizes, whatsappUrl } from './catalog'
 import './styles.css'
 
+const logoBase = `${import.meta.env.BASE_URL}blue-lightning-logo`
+
 const storageKey = 'blue-lightning-cart'
 const productById = new Map(products.map(product => [product.id, product]))
 
@@ -92,7 +94,10 @@ function App() {
     <>
       <header className="site-header" id="inicio">
         <div className="shell header-content">
-          <a className="logo" href="#inicio"><span className="bolt" aria-hidden="true">ϟ</span><span>BLUE LIGHTNING<small>DECANTS</small></span></a>
+          <a className="logo" href="#inicio">
+            <img className="header-logo" src={`${logoBase}-96.webp`} width="96" height="96" alt="" />
+            <span>BLUE LIGHTNING<small>DECANTS</small></span>
+          </a>
           <nav aria-label="Navegación principal">
             <a href="#catalogo">Catálogo</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a>
           </nav>
@@ -103,10 +108,22 @@ function App() {
       <main>
         <section className="hero" aria-labelledby="hero-title">
           <div className="shell hero-content">
-            <p className="eyebrow">PERFUMES Y DECANTS EN CHILE</p>
-            <h1 id="hero-title">Tu próxima<br /> <em>fragancia.</em></h1>
-            <p>Explora perfumes originales en formatos de 5 y 10 ml. Prueba nuevas fragancias antes de elegir tu próxima botella.</p>
-            <a className="button primary" href="#catalogo">Explorar catálogo <span aria-hidden="true">↗</span></a>
+            <div className="hero-copy">
+              <p className="eyebrow">PERFUMES Y DECANTS EN CHILE</p>
+              <h1 id="hero-title">Tu próxima<br /> <em>fragancia.</em></h1>
+              <p>Explora perfumes originales en formatos de 5 y 10 ml. Prueba nuevas fragancias antes de elegir tu próxima botella.</p>
+              <a className="button primary" href="#catalogo">Explorar catálogo <span aria-hidden="true">↗</span></a>
+            </div>
+            <img
+              className="hero-logo"
+              src={`${logoBase}-520.webp`}
+              srcSet={`${logoBase}-260.webp 260w, ${logoBase}-520.webp 520w, ${logoBase}-960.webp 960w`}
+              sizes="(max-width: 312px) calc(100vw - 52px), (max-width: 700px) 260px, (max-width: 1116px) 43vw, 480px"
+              width="520"
+              height="520"
+              fetchPriority="high"
+              alt="Logo oficial de Blue Lightning Decants"
+            />
           </div>
         </section>
 

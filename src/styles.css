@@ -20,9 +20,10 @@ a { color: inherit; text-decoration: none; }
 p { line-height: 1.65; }
 h1, h2, h3, p { margin: 0; }
 .shell { width: min(1200px, calc(100% - 72px)); margin-inline: auto; }
-.site-header { border-bottom: 1px solid var(--border); }
+.site-header { border-bottom: 1px solid #d6b57933; background: #08090e; }
 .header-content, .footer-content { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 75px; }
 .logo { display: inline-flex; align-items: center; gap: 9px; font-size: .79rem; letter-spacing: .09em; font-weight: 850; line-height: 1.2; white-space: nowrap; }
+.header-logo { display: block; width: 46px; height: auto; flex: none; }
 .logo small { display: block; font-size: .61rem; color: var(--gold); letter-spacing: .32em; margin-top: 4px; }
 .bolt { color: var(--blue); font-size: 2.35rem; line-height: .9; text-shadow: 0 0 18px #2860ff8a; }
 nav { display: flex; align-items: center; gap: clamp(15px, 4vw, 42px); }
@@ -37,16 +38,26 @@ nav a:hover, .remove:hover { color: white; }
 .cart-trigger { padding: 8px 11px; display: flex; align-items: center; gap: 9px; font-size: .84rem; }
 .cart-trigger span { min-width: 23px; text-align: center; padding: 2px 4px; color: #fff; border-radius: 5px; background: #2456c2; }
 .hero {
-  min-height: clamp(490px, 48vw, 660px);
-  display: flex;
-  align-items: center;
-  background: linear-gradient(90deg, #090a12 0%, #090a12e8 27%, #090a1235 65%), linear-gradient(0deg, #0a0a10, transparent 24%), #0b1026 url('/hero.webp') center right / cover no-repeat;
+  background: radial-gradient(ellipse at 78% 40%, #10224a 0%, transparent 52%), linear-gradient(#08090e, #0a0a10);
 }
-.hero-content { padding-block: 70px; }
+.hero-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(24px, 5vw, 68px);
+  padding-block: clamp(44px, 6vw, 84px);
+}
+.hero-logo {
+  display: block;
+  width: min(43vw, 480px);
+  height: auto;
+  justify-self: center;
+  box-shadow: 0 0 44px #2860ff24;
+}
 .eyebrow { color: var(--gold); font-size: .72rem; font-weight: 800; letter-spacing: .19em; margin-bottom: 14px; }
-.hero h1 { font-size: clamp(3.15rem, 8vw, 7.15rem); font-weight: 850; line-height: .94; letter-spacing: -.075em; }
+.hero h1 { font-size: clamp(2.8rem, 6.8vw, 6.5rem); font-weight: 850; line-height: .94; letter-spacing: -.075em; }
 .hero h1 em { color: #6395ff; font-style: normal; }
-.hero-content > p:not(.eyebrow) { max-width: 390px; color: #d3d4e2; margin: 25px 0; }
+.hero-copy > p:not(.eyebrow) { max-width: 390px; color: #d3d4e2; margin: 25px 0; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 14px; font-weight: 700; font-size: .86rem; }
 .button:hover:not(:disabled), .cart-trigger:hover { border-color: var(--blue); }
 .primary { background: #255be0; border-color: #5688ff; color: white; padding: 13px 18px; }
@@ -111,13 +122,20 @@ footer p, .muted { font-size: .83rem; color: var(--muted); }
 @media (max-width: 850px) {
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+@media (max-width: 700px) {
+  .hero { background: radial-gradient(ellipse at 50% 25%, #10224a 0%, transparent 60%), linear-gradient(#08090e, #0a0a10); }
+  .hero-content { grid-template-columns: minmax(0, 1fr); gap: 26px; padding-block: 28px 40px; }
+  .hero-logo { grid-row: 1; width: min(calc(100% - 20px), 260px); }
+  .hero-copy { text-align: center; }
+  .hero h1 { font-size: clamp(2.7rem, 9vw, 3.8rem); }
+  .hero-copy > p:not(.eyebrow) { margin: 16px auto; }
+}
 @media (max-width: 580px) {
   .shell { width: calc(100% - 32px); }
   .header-content { display: grid; grid-template-columns: 1fr auto; gap: 13px; padding-block: 12px; }
   nav { grid-row: 2; grid-column: 1 / -1; justify-content: space-between; max-width: 335px; width: 100%; }
-  .hero { min-height: 490px; align-items: end; background-position: 64% center; background-image: linear-gradient(0deg, #090a12 5%, #090a12d9 35%, #090a1210 85%), url('/hero.webp'); }
-  .hero-content { padding-block: 150px 36px; }
-  .hero-content > p:not(.eyebrow) { margin: 16px 0; }
+  .header-content .logo { gap: 7px; font-size: .72rem; }
+  .header-logo { width: 36px; }
   .catalog { padding-block: 48px; }
   .info, .grid { grid-template-columns: 1fr; }
   .info { padding-bottom: 48px; }
